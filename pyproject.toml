@@ -1,0 +1,19 @@
+[project]
+name = "sklib"
+version = "0.1.0"
+description = "A python library to export sprite from soul knight"
+authors = [
+    {name = "F-park", email = "forest_park@foxmail.com"},
+]
+dependencies = []
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "AGPL"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+
+[tool.pdm]
+distribution = true
