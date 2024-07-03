@@ -32,7 +32,7 @@ class Apk:
 
 
 class Cache:
-    def __init__(self, cache_dir = "./.cache/"):
+    def __init__(self, cache_dir=".cache"):
         cache_path = Path(cache_dir)
         cache_path.mkdir(exist_ok=True)
 
@@ -60,12 +60,12 @@ class Cache:
             httpx.stream("get", self.apk.url) as r,
             open(self.apk_path, mode="wb") as f,
         ):
-            total = round(float(r.headers["Content-Length"]) / 1024 / 1024, 2)
+            total = float(r.headers["Content-Length"]) / 1024 / 1024
             with tqdm(
-                desc="下载APK进度",
+                desc="安装包下载进度",
                 unit="MB",
                 total=total,
-                bar_format="{l_bar}{bar}| {n:.2f}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}{postfix}]",
+                bar_format="{l_bar}{bar}| {n:.2f}/{total:.2f} [{elapsed}<{remaining},{rate_fmt}{postfix}]",
             ) as progress:
                 for chunk in r.iter_raw():
                     f.write(chunk)
